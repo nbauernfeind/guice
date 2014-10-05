@@ -59,6 +59,11 @@ public final class SourceProvider {
     return new SourceProvider(this, asStrings(moreClassesToSkip));
   }
 
+  /** Returns a new instance that also skips {@code moreClassesToSkip}. */
+  public SourceProvider plusSkippedClasses(String... moreClassesToSkip) {
+    return new SourceProvider(this, Lists.newArrayList(moreClassesToSkip));
+  }
+
   /** Returns true if the className should be skipped. */
   private boolean shouldBeSkipped(String className) {
     return (parent != null && parent.shouldBeSkipped(className))

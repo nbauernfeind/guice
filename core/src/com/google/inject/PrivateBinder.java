@@ -47,4 +47,6 @@ public interface PrivateBinder extends Binder {
   PrivateBinder withSource(Object source);
 
   PrivateBinder skipSources(Class... classesToSkip);
+
+  PrivateBinder skipSources(String... classesToSkip);
 }

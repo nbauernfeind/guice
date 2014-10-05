@@ -416,6 +416,18 @@ public interface Binder {
   Binder skipSources(Class... classesToSkip);
 
   /**
+   * Returns a binder that skips {@code classesToSkip} when identify the
+   * calling code. The caller's {@link StackTraceElement} is used to locate
+   * the source of configuration errors.
+   *
+   * @param classesToSkip library classes that create bindings on behalf of
+   *      their clients.
+   * @return a binder that shares its configuration with this binder.
+   * @since 2.0
+   */
+  Binder skipSources(String... classesToSkip);
+
+  /**
    * Creates a new private child environment for bindings and other configuration. The returned
    * binder can be used to add and configuration information in this environment. See {@link
    * PrivateModule} for details.

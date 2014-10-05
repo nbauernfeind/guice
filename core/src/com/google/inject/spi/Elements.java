@@ -330,6 +330,16 @@ public final class Elements {
       return new RecordingBinder(this, null, newSourceProvider);
     }
 
+    public RecordingBinder skipSources(String... classesToSkip) {
+      // if a source is specified explicitly, we don't need to skip sources
+      if (source != null) {
+        return this;
+      }
+
+      SourceProvider newSourceProvider = sourceProvider.plusSkippedClasses(classesToSkip);
+      return new RecordingBinder(this, null, newSourceProvider);
+    }
+
     public PrivateBinder newPrivateBinder() {
       PrivateElementsImpl privateElements = new PrivateElementsImpl(getElementSource());
       RecordingBinder binder = new RecordingBinder(this, privateElements);
